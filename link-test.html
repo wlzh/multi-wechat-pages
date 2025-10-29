@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>链接测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        .link-test {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+        }
+        .test-button {
+            background: linear-gradient(135deg, #007bff, #00d4ff);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #333;
+            margin: 20px 0;
+        }
+        .status {
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .success {
+            color: #28a745;
+        }
+        .pending {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🔗 链接测试页面</h1>
+        <p>测试微信双开方案指南中的外部链接是否正常工作</p>
+        
+        <div class="link-test">
+            <h3>方案一：AltStore</h3>
+            <p><strong>链接：</strong> https://altstore.io/</p>
+            <p class="status pending" id="altstore-status">⏳ 等待测试...</p>
+            <a href="https://altstore.io/" target="_blank" class="test-button">🔗 访问AltStore官网</a>
+            <button onclick="testLink('https://altstore.io/', 'altstore-status')" class="test-button">🧪 测试链接</button>
+        </div>
+        
+        <div class="link-test">
+            <h3>方案二：微信测试版</h3>
+            <p><strong>链接：</strong> https://x.com/wlzh/status/1958407695704478062</p>
+            <p class="status pending" id="test-version-status">⏳ 等待测试...</p>
+            <a href="https://x.com/wlzh/status/1958407695704478062" target="_blank" class="test-button">🔗 访问测试版详情</a>
+            <button onclick="testLink('https://x.com/wlzh/status/1958407695704478062', 'test-version-status')" class="test-button">🧪 测试链接</button>
+        </div>
+        
+        <div class="link-test">
+            <h3>方案三：微信多签名</h3>
+            <p><strong>链接：</strong> https://x.com/wlzh/status/1958095264981581962</p>
+            <p class="status pending" id="multi-signature-status">⏳ 等待测试...</p>
+            <a href="https://x.com/wlzh/status/1958095264981581962" target="_blank" class="test-button">🔗 访问双开多开详情</a>
+            <button onclick="testLink('https://x.com/wlzh/status/1958095264981581962', 'multi-signature-status')" class="test-button">🧪 测试链接</button>
+        </div>
+        
+        <div style="margin: 30px 0;">
+            <a href="http://localhost:8080" class="test-button">🏠 返回主页面</a>
+            <button onclick="testAllLinks()" class="test-button">🚀 一键测试所有链接</button>
+        </div>
+        
+        <div id="test-results" style="margin-top: 20px; text-align: left;"></div>
+    </div>
+
+    <script>
+        async function testLink(url, statusId) {
+            const statusElement = document.getElementById(statusId);
+            statusElement.textContent = '🔄 正在测试...';
+            statusElement.className = 'status pending';
+            
+            try {
+                const response = await fetch(url, {
+                    method: 'HEAD',
+                    mode: 'no-cors'
+                });
+                statusElement.textContent = '✅ 链接正常';
+                statusElement.className = 'status success';
+            } catch (error) {
+                statusElement.textContent = '❌ 链接可能有问题';
+                statusElement.className = 'status pending';
+                console.log(`测试链接 ${url} 时出错:`, error);
+            }
+        }
+        
+        function testAllLinks() {
+            const links = [
+                { url: 'https://altstore.io/', statusId: 'altstore-status' },
+                { url: 'https://x.com/wlzh/status/1958407695704478062', statusId: 'test-version-status' },
+                { url: 'https://x.com/wlzh/status/1958095264981581962', statusId: 'multi-signature-status' }
+            ];
+            
+            links.forEach(link => {
+                setTimeout(() => {
+                    testLink(link.url, link.statusId);
+                }, 1000);
+            });
+            
+            document.getElementById('test-results').innerHTML = '<p class="status success">🎯 开始测试所有链接...</p>';
+        }
+        
+        // 页面加载完成后自动测试所有链接
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(testAllLinks, 500);
+        });
+    </script>
+</body>
+</html>
