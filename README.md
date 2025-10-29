@@ -1,11 +1,6 @@
 # 微信双开及多开方案对比指南
 
-![GitHub](https://img.shields.io/github/license/wlzh/wechat-multiple-accounts-guide)
-![GitHub stars](https://img.shields.io/github/stars/wlzh/wechat-multiple-accounts-guide)
-![GitHub issues](https://img.shields.io/github/issues/wlzh/wechat-multiple-accounts-guide)
-![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![GitHub](https://github.com/wlzh/multi-wechat-pages)
 
 > 🎯 一站式解决您的多微信账号管理需求 - 提供5种微信双开/多开方案的详细对比和实用指南
 
@@ -271,8 +266,8 @@ php -S localhost:8080
 ## 📞 联系方式
 
 - **GitHub**: [wlzh](https://github.com/wlzh)
-- **项目主页**: [访问项目](https://github.com/wlzh/wechat-multiple-accounts-guide)
-- **问题反馈**: [提交Issue](https://github.com/wlzh/wechat-multiple-accounts-guide/issues)
+- **项目主页**: [访问项目](https://github.com/wlzh/multi-wechat-pages)
+- **问题反馈**: [提交Issue](https://github.com/wlzh/multi-wechat-pages/issues)
 
 ---
 
